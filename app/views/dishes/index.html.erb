@@ -1,0 +1,46 @@
+<h1>Listing dishes</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Picture</th>
+    <th>Detail</th>
+    <th>Note</th>
+    <th>Available</th>
+    <th>Spicy</th>
+    <th>Veggie</th>
+    <th>Price</th>
+    <th></th>
+  </tr>
+
+<% @store.dishes.each do |dish| %>
+  <tr>
+    <td><%= dish.name %></td>
+    <td><%= dish.picture %></td>
+    <td><%= dish.detail %></td>
+    <td><%= dish.note %></td>
+    <td><%= dish.available %></td>
+    <td><%= dish.spicy %></td>
+    <td><%= dish.veggie %></td>
+    <td><%= dish.price %></td>
+    <td><%= link_to 'Show', [@store, dish] %>
+		<% if can? :update, dish %>
+    	<%= link_to 'Edit', edit_store_dish_path(@store, dish) %>
+    <% end %>
+    <% if can? :destroy, dish %>
+    	<%= link_to 'Destroy', store_dish_path(@store, dish), :confirm => 'Are you sure?', :method => :delete %>
+    <% end %>
+    <% if can? :create, Item %>
+    	<%= link_to 'Add to Cart', order_items_path(current_order, :dish_id => dish), :method => :post %>
+    <% end %>
+    </td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'Store info', [@store] %>
+<% if can? :create, Dish %>
+	<%= link_to 'New Dish', new_store_dish_path %>
+<% end %>

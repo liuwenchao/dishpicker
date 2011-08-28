@@ -1,0 +1,21 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  name: MyString
+  picture: MyString
+  detail: MyText
+  note: MyString
+  available: false
+  spicy: 1
+  veggie: false
+  price: 1
+
+two:
+  name: MyString
+  picture: MyString
+  detail: MyText
+  note: MyString
+  available: false
+  spicy: 1
+  veggie: false
+  price: 1

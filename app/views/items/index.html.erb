@@ -1,0 +1,47 @@
+<h1>
+	<% if @order.id == current_order.id %>
+		Your cart detail:
+	<% else %>
+		Your order detail:
+	<% end %>
+</h1>
+
+<table>
+  <tr>
+    <th>Dish</th>
+    <th>Status</th>
+    <th>Price</th>
+    <th>Operation</th>
+  </tr>
+
+<% @items.each do |item| %>
+  <tr>
+    <td><%= item.dish.name %></td>
+    <td><%= item.status %></td>
+    <td><%= item.price %></td>
+    <td>
+    <% if can? :destroy, item %>
+    	<%= link_to 'Destroy', order_item_path(@order, item), :confirm => 'Are you sure?', :method => :delete %>
+    <% end %>
+    <%= link_to 'Back to Store Dish list', store_dishes_path(item.dish.store) %>
+		</td>
+  </tr>
+<% end %>
+
+  <tr>
+    <td></td>
+    <td>Total:</td>
+    <td><%= @order.total_price %></td>
+    <td></td>
+  </tr>
+
+</table>
+
+<% if @order.id == current_order.id %>
+	<p>
+		<%= link_to 'Continue shopping', root_url %>
+	</p>
+	<p>
+		<%= link_to image_tag("https://www.paypal.com/en_US/i/btn/btn_xpressCheckout.gif"), express_order_path(@order) %>
+	</p>
+<% end %>

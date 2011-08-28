@@ -1,0 +1,8 @@
+Sorry, before you can sign in you need to confirm your email address. <br /> 
+If you did not receive confirmation email: 
+<ul>
+	<li>check your spam folder</li>
+	<li>and add do-not-reply@dishpicker.com into your safer-receipient list.</li>
+	<li>If that doesn't work, You can
+	<%= link_to('Request another confirmation email', resend_activation_users_path(:email => user.email)) %></li>
+</ul>

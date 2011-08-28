@@ -1,0 +1,13 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  price: 1
+  status: MyString
+  dish: 
+  order: 
+
+two:
+  price: 1
+  status: MyString
+  dish: 
+  order: 

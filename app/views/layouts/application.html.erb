@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1"> 
+
+  <title>Food</title>
+  <%= stylesheet_link_tag :all %>
+  <%= stylesheet_link_tag "http://code.jquery.com/mobile/1.0b2/jquery.mobile-1.0b2.min.css" %>
+  <%= javascript_include_tag :defaults, "http://code.jquery.com/mobile/1.0b2/jquery.mobile-1.0b2.min.js" %>
+  <%= csrf_meta_tag %>
+</head>
+<body>
+
+  <div data-role="page" data-theme="b">
+  	<div data-role="header">
+  	  <a href="/" data-icon="home" data-direction="reverse">Home</a>
+      <h1>DishPicker</h1>
+  	  <% if current_user %>
+        <% if current_order.items.count > 0 %>
+          <%= link_to "Your Cart(" + current_order.items.count.to_s + ")", order_items_path(current_order) %>
+        <% end %>
+        <%= link_to 'Stores', root_url %>
+        <%= link_to "Edit Profile", edit_user_path(:current) %>
+        <%= link_to "Logout", logout_path %>
+        <%= link_to "Register", new_user_path %>
+      <% else %>
+        <%= link_to "Login", login_path %>
+      <% end %>
+    </div>
+    
+    <div data-role="content">
+      <%- flash.each do |name, msg| -%>
+        <%= content_tag :div, msg, :id => "flash_#{name}" %>
+      <%- end -%>
+
+      <%= yield %>
+    </div>
+    
+    <div data-role="footer">
+      <%= link_to "About", page_path("about"), "data-icon"=>"info" %>
+      <%= link_to "Help", page_path("help"), "data-icon"=>"info" %>
+      <%= link_to "Privacy", page_path("privacy"), "data-icon"=>"info" %>
+      <%= link_to "Terms", page_path("terms"), "data-icon"=>"alert" %>
+      <%= link_to "@DishPicker", "http://twitter.com/#!/dishpicker", :rel => "external", "data-icon"=>"info" %>
+    </div>
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,25 @@
+<table>
+  <tr>
+    <th>Dish</th>
+    <th>Status</th>
+    <th>Price</th>
+  </tr>
+
+<% @order.items.each do |item| %>
+  <tr>
+    <td><%= item.dish.name %></td>
+    <td><%= item.status %></td>
+    <td><%= item.price %></td>
+  </tr>
+<% end %>
+
+  <tr>
+    <td></td>
+    <td>Total:</td>
+    <td><%= @order.total_price %></td>
+    <td></td>
+  </tr>
+
+</table>
+
+<%= link_to 'Order history', orders_path %>

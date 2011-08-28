@@ -1,0 +1,23 @@
+<div data-role="header">
+  <a href="/" data-icon="home">DishPicker</a>
+  <h1>DishPicker helps you connect with the restaurants.</h1>
+  <% if current_user %>
+    <% if current_order.items.count > 0 %>
+      <%= link_to "Your Cart(" + current_order.items.count.to_s + ")", order_items_path(current_order) %> |
+    <% end %>
+    <%= link_to 'Stores', root_url %> |
+    <%= link_to "Edit Profile", edit_user_path(:current) %> |
+    <%= link_to "Logout", logout_path %>
+  <% else %>
+    <%= link_to "Register", new_user_path %> |
+    <%= link_to "Login", login_path %>
+  <% end %>
+</div>
+
+<div data-role="content">
+  <%- flash.each do |name, msg| -%>
+    <%= content_tag :div, msg, :id => "flash_#{name}" %>
+  <%- end -%>
+
+  <%= yield %>
+</div>

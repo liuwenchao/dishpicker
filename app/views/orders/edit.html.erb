@@ -1,0 +1,49 @@
+<h1>Editing order</h1>
+
+<% form_for @order do |f| %>
+  <% unless @order.express_token.blank? %>
+    <%= f.hidden_field :express_token %>
+    <table>
+      <tr>
+        <th>Dish</th>
+        <th>Status</th>
+        <th>Price</th>
+        <th>Operation</th>
+      </tr>
+    
+    <% @order.items.each do |item| %>
+      <tr>
+        <td><%= item.dish.name %></td>
+        <td><%= item.status %></td>
+        <td><%= item.price %></td>
+        <td>
+        <% if can? :destroy, item %>
+          <%= link_to 'Destroy', order_item_path(@order, item), :confirm => 'Are you sure?', :method => :delete %>
+        <% end %>
+        <%= link_to 'Back to Store Dish list', store_dishes_path(item.dish.store) %>
+        </td>
+      </tr>
+    <% end %>
+    
+      <tr>
+        <td></td>
+        <td>Total:</td>
+        <td><%= @order.total_price %></td>
+        <td></td>
+      </tr>
+    
+    </table>
+    <div class="field">
+      <%= f.label :delivery %><br />
+      <%= f.check_box :delivery %>
+    </div>
+    <div class="field">
+      <%= f.label :notes %><br />
+      <%= f.text_field :notes %>
+    </div>
+  <% end %>
+  <p><%= f.submit "Complete Order" %></p>
+<% end %>
+
+<%= link_to 'Show', @order %> |
+<%= link_to 'Back', orders_path %>

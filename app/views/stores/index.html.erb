@@ -1,0 +1,20 @@
+<h1>Listing stores</h1>
+
+<ul data-role="listview" data-inset="true">
+<% @stores.each do |store| %>
+  <li>
+    <a href="<%= url_for store %>">
+      <%= image_tag store.photo.url(:small) %>
+      <h3><%= store.name %></h3>
+      <p>Address: <%= store.address %>, <%= store.city %>, <%= store.state %> <%= store.zip %>, <%= store.country %></p>
+      <p>Tel: <%= store.tel %> Hours: <%= store.hours %> Manager: <%= store.user %></p>
+    </a>
+  </li>
+<% end %>
+</ul>
+
+<br />
+<% if can? :create, Store %> 
+<%= link_to 'New Store', new_store_path %>
+<% end %>
+
