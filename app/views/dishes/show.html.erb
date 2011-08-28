@@ -40,6 +40,14 @@
   <%= @dish.price %>
 </p>
 
+<%= link_to 'Back to Store', @store, 'class'=>'inline' %>
+<% if can? :update, @dish %>
+  <%= link_to 'Edit', edit_store_dish_path(@store, @dish), 'class'=>'inline' %>
+<% end %>
+<% if can? :destroy, @dish %>
+  <%= link_to 'Destroy', store_dish_path(@store, @dish), :confirm => 'Are you sure?', :method => :delete, 'class'=>'inline' %>
+<% end %>
+<% if can? :create, Item %>
+  <%= link_to 'Add to Cart', order_items_path(current_order, :dish_id => @dish), :method => :post, 'class'=>'inline' %>
+<% end %>
 
-<%= link_to 'Edit', edit_store_dish_path(@dish.store, @dish) %> |
-<%= link_to 'Back', store_dishes_path %>

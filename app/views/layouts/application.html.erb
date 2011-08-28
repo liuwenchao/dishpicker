@@ -12,24 +12,18 @@
 </head>
 <body>
 
-  <div data-role="page" data-theme="b">
-  	<div data-role="header">
-  	  <a href="/" data-icon="home" data-direction="reverse">Home</a>
+  <div data-role="page" data-theme="e" class="page">
+  	<header>
+  	  <a href="/" class="home">Home</a>
       <h1>DishPicker</h1>
   	  <% if current_user %>
-        <% if current_order.items.count > 0 %>
-          <%= link_to "Your Cart(" + current_order.items.count.to_s + ")", order_items_path(current_order) %>
-        <% end %>
-        <%= link_to 'Stores', root_url %>
-        <%= link_to "Edit Profile", edit_user_path(:current) %>
         <%= link_to "Logout", logout_path %>
-        <%= link_to "Register", new_user_path %>
       <% else %>
         <%= link_to "Login", login_path %>
       <% end %>
-    </div>
+    </header>
     
-    <div data-role="content">
+    <div class="content">
       <%- flash.each do |name, msg| -%>
         <%= content_tag :div, msg, :id => "flash_#{name}" %>
       <%- end -%>
@@ -37,13 +31,22 @@
       <%= yield %>
     </div>
     
-    <div data-role="footer">
-      <%= link_to "About", page_path("about"), "data-icon"=>"info" %>
-      <%= link_to "Help", page_path("help"), "data-icon"=>"info" %>
-      <%= link_to "Privacy", page_path("privacy"), "data-icon"=>"info" %>
-      <%= link_to "Terms", page_path("terms"), "data-icon"=>"alert" %>
-      <%= link_to "@DishPicker", "http://twitter.com/#!/dishpicker", :rel => "external", "data-icon"=>"info" %>
-    </div>
+    <footer class="ui-bar">
+      <%= link_to "About", page_path("about"), "class"=>"info" %>
+      <%= link_to "Help", page_path("help"), "class"=>"info" %>
+      <%= link_to "Privacy", page_path("privacy"), "class"=>"info" %>
+      <%= link_to "Terms", page_path("terms"), "class"=>"alert" %>
+      <%= link_to "@DishPicker", "http://twitter.com/#!/dishpicker", :rel => "external", "class"=>"info" %>
+
+  	  <% if current_user %>
+        <% if current_order.items.count > 0 %>
+          <%= link_to "Your Cart(" + current_order.items.count.to_s + ")", order_items_path(current_order) %>
+        <% end %>
+        <%= link_to "Edit Profile", edit_user_path(:current) %>
+      <% else %>
+        <%= link_to "Register", new_user_path %>
+      <% end %>
+    </footer>
   </div>
 
 </body>

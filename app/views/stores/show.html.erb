@@ -6,62 +6,25 @@
 <p>Tel: <%= @store.tel %> Hours: <%= @store.hours %> Manager: <%= @store.user %></p>
 
 
-<ul data-role="listview" data-inset="true">
+<ul class="listview">
 <% @store.dishes.each do |dish| %>
   <li>
-    <a href="<%= url_for dish %>">
+    <a href="<%= store_dish_path(@store, dish) %>">
       <%= image_tag dish.photo.url(:small) %>
       <h3><%= dish.name %></h3>
       <p><%= dish.detail %></p>
-      <p>Spicy: <%= dish.spicy %> Veggie: <%= dish.veggie %>
+      <p>Spicy: <%= dish.spicy %> Veggie: <%= dish.veggie %></p>
     </a>
-    <a href="<%= url_for order_items_path(current_order, :dish_id => dish) %>"
-      Add to Cart
-    </a>
+    <% if can? :create, Item %>
+      <a href="<%= order_items_path(current_order, :dish_id => dish) %>">
+        Add to Cart
+      </a>
+    <% end %>
   </li>
 <% end %>
 </ul>
 
-<!--table>
-  <tr>
-    <th>Name</th>
-    <th>Picture</th>
-    <th>Detail</th>
-    <th>Note</th>
-    <th>Available</th>
-    <th>Spicy</th>
-    <th>Veggie</th>
-    <th>Price</th>
-    <th></th>
-  </tr>
-
-<% @store.dishes.each do |dish| %>
-  <tr>
-    <td><%= dish.name %></td>
-    <td><%= dish.picture %></td>
-    <td><%= dish.detail %></td>
-    <td><%= dish.note %></td>
-    <td><%= dish.available %></td>
-    <td><%= dish.spicy %></td>
-    <td><%= dish.veggie %></td>
-    <td><%= dish.price %></td>
-    <td><%= link_to 'Show', [@store, dish] %>
-		<% if can? :update, dish %>
-    	<%= link_to 'Edit', edit_store_dish_path(@store, dish) %>
-    <% end %>
-    <% if can? :destroy, dish %>
-    	<%= link_to 'Destroy', store_dish_path(@store, dish), :confirm => 'Are you sure?', :method => :delete %>
-    <% end %>
-    <% if can? :create, Item %>
-    	<%= link_to 'Add to Cart', order_items_path(current_order, :dish_id => dish), :method => :post %>
-    <% end %>
-    </td>
-  </tr>
+<% if can? :edit, @store %>
+  <%= link_to 'Edit Store', edit_store_path(@store), 'class'=>'inline' %>
+  <%= link_to 'New Dish', new_store_dish_path(@store), 'class'=>'inline' %>
 <% end %>
-</table--!>
-
-<br />
-<%= link_to 'New Dish', new_store_dish_path(@store) %> |
-<%= link_to 'Dish List', store_dishes_path(@store) %> |
-<%= link_to 'Edit', edit_store_path(@store) %> |
-<%= link_to 'Back', stores_path %>

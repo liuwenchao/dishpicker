@@ -40,7 +40,7 @@
 
 <br />
 
-<%= link_to 'Store info', [@store] %>
+<%= link_to 'Store info', [@store], 'class'=>'inline' %>
 <% if can? :create, Dish %>
-	<%= link_to 'New Dish', new_store_dish_path %>
+	<%= link_to 'New Dish', new_store_dish_path, 'class'=>'inline' %>
 <% end %>

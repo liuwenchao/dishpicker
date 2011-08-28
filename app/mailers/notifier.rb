@@ -1,6 +1,7 @@
 class Notifier < ActionMailer::Base
   default :from => "do-not-reply@dishpicker.com"
-  default_url_options[:host] = "dishpicker.com"
+  default_url_options[:host] = "dev.dishpicker.com"
+  default_url_options[:port] = "3000"
   
   def activation_instructions(user)
   	@user = user
