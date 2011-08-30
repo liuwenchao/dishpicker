@@ -76,7 +76,7 @@ class DishesController < ApplicationController
     @dish.destroy
 
     respond_to do |format|
-      format.html { redirect_to(dishes_url) }
+      format.html { redirect_to(@store) }
       format.xml  { head :ok }
     end
   end

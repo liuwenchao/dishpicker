@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
 	
 	rescue_from CanCan::AccessDenied do |exception|
 		Rails.logger.debug "Access Denied: #{exception.message}"
-		redirect_to stores_url, :alert => exception.message
+		redirect_to login_url, :alert => exception.message
 	end
 	
 	def set_locale

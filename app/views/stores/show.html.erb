@@ -24,6 +24,7 @@
 <% end %>
 </ul>
 
+<%= link_to 'Back to Store List', stores_path, 'class'=>'inline' %>
 <% if can? :edit, @store %>
   <%= link_to 'Edit Store', edit_store_path(@store), 'class'=>'inline' %>
   <%= link_to 'New Dish', new_store_dish_path(@store), 'class'=>'inline' %>

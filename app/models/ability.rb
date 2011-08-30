@@ -3,14 +3,14 @@ class Ability
   
   def initialize(user)
   	user ||= User.new # guest user
-		can :read, Store
-		can :read, Dish
 		can :create, User
 		can :resend_activation, User
 
   	if user.role? :admin
   		can :manage, :all
   	elsif user.id
+  	  can :read, Store
+  	  can :read, Dish
   		can :manage, Store, :user_id => user.id
   		can :manage, Dish, :store => { :user_id => user.id }
   		can :manage, User, :id => user.id

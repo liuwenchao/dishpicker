@@ -44,7 +44,7 @@ class UserSessionsController < ApplicationController
     
     respond_to do |format|
 			if @user_session.save
-        format.html { redirect_to(root_url, :notice => 'User session was successfully created.') }
+        format.html { redirect_to(root_url, :notice => 'You have successfully logged in.') }
   		else
 				if @user_session.attempted_record && !@user_session.attempted_record.active?
 					flash[:alert] = render_to_string(:partial => 'user_sessions/not_active.erb', :locals => { :user => @user_session.attempted_record })

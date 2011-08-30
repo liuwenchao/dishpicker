@@ -4,7 +4,7 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1"> 
 
-  <title>Food</title>
+  <title>DishPicker</title>
   <%= stylesheet_link_tag :all %>
   <%= stylesheet_link_tag "http://code.jquery.com/mobile/1.0b2/jquery.mobile-1.0b2.min.css" %>
   <%= javascript_include_tag :defaults, "http://code.jquery.com/mobile/1.0b2/jquery.mobile-1.0b2.min.js" %>
@@ -19,7 +19,7 @@
   	  <% if current_user %>
         <%= link_to "Logout", logout_path %>
       <% else %>
-        <%= link_to "Login", login_path %>
+        <%= link_to "Login or Register", login_path, "class"=>"e" %>
       <% end %>
     </header>
     
@@ -43,8 +43,6 @@
           <%= link_to "Your Cart(" + current_order.items.count.to_s + ")", order_items_path(current_order) %>
         <% end %>
         <%= link_to "Edit Profile", edit_user_path(:current) %>
-      <% else %>
-        <%= link_to "Register", new_user_path %>
       <% end %>
     </footer>
   </div>

@@ -9,8 +9,11 @@ $('div.page').live('pagebeforecreate',function(event){
   $('a.info', this).attr('data-icon', "info");
   $('a.alert', this).attr('data-icon', "alert");
   $('a.inline', this).attr('data-role', "button").attr('data-inline', "true");
-  $('ul.listview', this).attr('data-role', "listview").attr('data-inset', "true").attr('data-filter',"true");
+  $('ul.listview', this).attr('data-role', "listview").attr('data-inset', "true");
+  $('ul.listview', this).has('li').attr('data-filter',"true").attr('data-filter-placeholder',"Filter...");
   $('ul.listview a:nth-child(2)', this).attr('data-icon', "plus");
   $('div.field', this).attr('data-role', 'fieldcontain');
   $('form', this).has(':file').attr('data-ajax', "false");
+  $('a.b', this).attr('data-theme', 'b');
+  $('a.e', this).attr('data-theme', 'e');
 });

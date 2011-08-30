@@ -24,12 +24,6 @@
     <td><%= dish.veggie %></td>
     <td><%= dish.price %></td>
     <td><%= link_to 'Show', [@store, dish] %>
-		<% if can? :update, dish %>
-    	<%= link_to 'Edit', edit_store_dish_path(@store, dish) %>
-    <% end %>
-    <% if can? :destroy, dish %>
-    	<%= link_to 'Destroy', store_dish_path(@store, dish), :confirm => 'Are you sure?', :method => :delete %>
-    <% end %>
     <% if can? :create, Item %>
     	<%= link_to 'Add to Cart', order_items_path(current_order, :dish_id => dish), :method => :post %>
     <% end %>

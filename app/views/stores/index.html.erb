@@ -1,5 +1,3 @@
-<h1>Listing stores</h1>
-
 <ul class="listview">
 <% @stores.each do |store| %>
   <li>
@@ -10,15 +8,12 @@
       <p>Tel: <%= store.tel %> Hours: <%= store.hours %> Manager: <%= store.user %></p>
       <div class="ui-li-count"><%= store.dishes.count %></div>
     </a>
-    <a href="#">
-      Add to my favorates
-    </a>
   </li>
 <% end %>
 </ul>
 
 <br />
 <% if can? :create, Store %> 
-<%= link_to 'New Store', new_store_path, 'class'=>'inline' %>
+<%= link_to 'Register Your Store', new_store_path, 'class'=>'inline' %>
 <% end %>
 
