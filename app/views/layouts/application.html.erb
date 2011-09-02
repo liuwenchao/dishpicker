@@ -17,7 +17,7 @@
   	  <a href="/" class="home">Home</a>
       <h1>DishPicker</h1>
   	  <% if current_user %>
-        <%= link_to "Logout", logout_path %>
+        <%= link_to "Logout as "+current_user.name, logout_path %>
       <% else %>
         <%= link_to "Login or Register", login_path, "class"=>"e" %>
       <% end %>
@@ -40,7 +40,7 @@
 
   	  <% if current_user %>
         <% if current_order.items.count > 0 %>
-          <%= link_to "Your Cart(" + current_order.items.count.to_s + ")", order_items_path(current_order) %>
+          <%= link_to "Your Cart (" + current_order.items.count.to_s + ")", order_items_path(current_order) %>
         <% end %>
         <%= link_to "Edit Profile", edit_user_path(:current) %>
       <% end %>

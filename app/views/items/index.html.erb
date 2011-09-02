@@ -6,42 +6,30 @@
 	<% end %>
 </h1>
 
-<table>
-  <tr>
-    <th>Dish</th>
-    <th>Status</th>
-    <th>Price</th>
-    <th>Operation</th>
-  </tr>
-
+<ul class="listview inset">
 <% @items.each do |item| %>
-  <tr>
-    <td><%= item.dish.name %></td>
-    <td><%= item.status %></td>
-    <td><%= item.price %></td>
-    <td>
+  <li>
+    <a href="#">
+      <%= image_tag item.dish.photo.url(:small) %></h3>
+      <h3><%= item.dish.name %></h3>
+      <p>Status: <%= item.status %></p>
+      <p><%= item.price %></p>
+    </a>
     <% if can? :destroy, item %>
-    	<%= link_to 'Destroy', order_item_path(@order, item), :confirm => 'Are you sure?', :method => :delete %>
+    	<%= link_to 'Destroy', order_item_path(@order, item), :confirm => 'Are you sure?', :method => :delete, "class"=>"minus" %>
     <% end %>
-    <%= link_to 'Back to Store Dish list', store_dishes_path(item.dish.store) %>
-		</td>
-  </tr>
+  </li>
 <% end %>
 
-  <tr>
-    <td></td>
-    <td>Total:</td>
-    <td><%= @order.total_price %></td>
-    <td></td>
-  </tr>
+  <li>
+    <p>Total: <%= @order.total_price %></p>
+  </li>
 
 </table>
 
+</ul>
+
 <% if @order.id == current_order.id %>
-	<p>
-		<%= link_to 'Continue shopping', root_url %>
-	</p>
-	<p>
-		<%= link_to image_tag("https://www.paypal.com/en_US/i/btn/btn_xpressCheckout.gif"), express_order_path(@order) %>
-	</p>
+		<%= link_to 'Continue shopping', root_url, "class"=>"inline back" %>
+		<%= link_to image_tag("https://www.paypal.com/en_US/i/btn/btn_xpressCheckout.gif"), express_order_path(@order), "class"=>"inline" %>
 <% end %>

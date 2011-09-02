@@ -1,30 +1,44 @@
 <p id="notice"><%= notice %></p>
 
-<%= image_tag @store.photo.url %>
-<h3><%= @store.name %></h3>
-<p>Address: <%= @store.address %>, <%= @store.city %>, <%= @store.state %> <%= @store.zip %>, <%= @store.country %></p>
-<p>Tel: <%= @store.tel %> Hours: <%= @store.hours %> Manager: <%= @store.user %></p>
-
-
-<ul class="listview">
-<% @store.dishes.each do |dish| %>
-  <li>
-    <a href="<%= store_dish_path(@store, dish) %>">
-      <%= image_tag dish.photo.url(:small) %>
-      <h3><%= dish.name %></h3>
-      <p><%= dish.detail %></p>
-      <p>Spicy: <%= dish.spicy %> Veggie: <%= dish.veggie %></p>
-    </a>
-    <% if can? :create, Item %>
-      <a href="<%= order_items_path(current_order, :dish_id => dish) %>">
-        Add to Cart
-      </a>
+<%= image_tag @store.photo.url(:small) %>
+   
+<div class="collapsible-set">
+  <div class="collapsible">
+    <h3><%= @store.name %></h3>
+    <div class="ui-grid-a">
+      <div class="ui-block-a">
+        <p>Address: <%= @store.address %>, <%= @store.city %>, <%= @store.state %> <%= @store.zip %>, <%= @store.country %></p>
+        <p>Tel: <%= @store.tel %></p>
+        <p>Hours: <%= @store.hours %></p>
+        <p>Manager: <%= @store.user %></p>
+      </div>
+      <div class="ui-block-b">
+        Map
+      </div>
+    </div>
+  </div>
+  
+  <div class="collapsible">
+    <h3>Dish List</h3>
+    <ul class="listview inset">
+    <% @store.dishes.each do |dish| %>
+      <li>
+        <a href="<%= store_dish_path(@store, dish) %>">
+          <%= image_tag dish.photo.url(:small) %>
+          <h3><%= dish.name %></h3>
+          <p><%= dish.detail %></p>
+          <p>Spicy: <%= dish.spicy %> Veggie: <%= dish.veggie %></p>
+        </a>
+        <% if can? :create, Item %>
+          <%= link_to 'Add to Cart', order_items_path(current_order, :dish_id => dish), :method => :post, "class"=>"plus" %>
+        <% end %>
+      </li>
     <% end %>
-  </li>
-<% end %>
-</ul>
-
-<%= link_to 'Back to Store List', stores_path, 'class'=>'inline' %>
+    </ul>
+  </div>
+</div>
+  
+<%= link_to 'Back to Store List', stores_path, 'class'=>'inline back' %>
 <% if can? :edit, @store %>
   <%= link_to 'Edit Store', edit_store_path(@store), 'class'=>'inline' %>
   <%= link_to 'New Dish', new_store_dish_path(@store), 'class'=>'inline' %>

@@ -41,7 +41,7 @@
   <%= @dish.price %>
 </p>
 
-<%= link_to 'Back to Store', @store, 'class'=>'inline' %>
+<%= link_to 'Back to Store', @store, 'class'=>'inline back' %>
 <% if can? :update, @dish %>
   <%= link_to 'Edit', edit_store_dish_path(@store, @dish), 'class'=>'inline' %>
 <% end %>
