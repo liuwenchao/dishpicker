@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.0.7'
+gem 'rails', '3.1.0'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -37,3 +37,18 @@ gem "active_merchant"
 gem "paperclip"
 gem "jquery-rails"
 gem "high_voltage"
+
+
+# Gems used only for assets and not required
+# in production environments by default.
+group :assets do
+  gem 'sass-rails'
+  gem 'coffee-rails'
+  gem 'uglifier'
+  gem "execjs"
+  gem "therubyracer"
+  gem "libv8"
+end
+
+gem 'jquery-rails'
+

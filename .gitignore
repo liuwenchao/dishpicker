@@ -7,3 +7,4 @@ tmp/
 *.swp
 *.lock
 public/assets
+.sass-cache/

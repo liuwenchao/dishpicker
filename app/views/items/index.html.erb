@@ -31,5 +31,5 @@
 
 <% if @order.id == current_order.id %>
 		<%= link_to 'Continue shopping', root_url, "class"=>"inline back" %>
-		<%= link_to image_tag("https://www.paypal.com/en_US/i/btn/btn_xpressCheckout.gif"), express_order_path(@order), "class"=>"inline" %>
+		<%= link_to image_tag("https://www.paypal.com/en_US/i/btn/btn_xpressCheckout.gif"), express_order_path(@order), "class"=>"inline", "rel"=>"external" %>
 <% end %>
