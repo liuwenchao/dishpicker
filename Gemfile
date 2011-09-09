@@ -49,6 +49,3 @@ group :assets do
   gem "therubyracer"
   gem "libv8"
 end
-
-gem 'jquery-rails'
-

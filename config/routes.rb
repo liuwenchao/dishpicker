@@ -14,9 +14,17 @@ Food::Application.routes.draw do
   end
 
   resources :orders do
+    member do
+      put 'submit'
+      put 'accept'
+      put 'deliver'
+    end
   	resources :items
   	member do
   	  get 'express'
+  	  put 'start'
+  	  put 'finish'
+  	  put 'deliver'
   	end
   end
 

@@ -60,6 +60,20 @@ class OrdersController < ApplicationController
       end
     end
   end
+  
+  # PUT /orders/1/submit
+  def submit
+    @order.ip = request.remote_ip
+    respond_to do |format|
+      if @order.status.nil?
+        @order.status = 'submitted'
+        @order.save
+        format.html { redirect_to(@order, :alert => "Order has been submitted") }
+      else
+        format.html { render :action => "show" }
+      end
+    end
+  end
 
   # DELETE /orders/1
   # DELETE /orders/1.xml
