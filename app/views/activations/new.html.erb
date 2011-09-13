@@ -1,6 +1,6 @@
 <h1>Activate your account</h1>
- 
-<% form_for @user, :url => activate_path(@user.id), :html => { :method => :post } do |f| %>
+
+<%= form_for @user, :url => activate_path(@user.id), :html => { :method => :post } do |f| %>
   <div class="field">
     <%= f.label :password %><br />
     <%= f.password_field :password %>

@@ -22,7 +22,10 @@ class ApplicationController < ActionController::Base
       session[:order_id] = nil if @current_order.purchased_at
     end
     if session[:order_id].nil?
-      @current_order = Order.create!(:user_id => current_user.id)
+      @current_order = Order.where('user_id = ? AND status is null', current_user).order('created_at desc').first()
+      if @current_order.nil?
+        @current_order = Order.create!(:user_id => current_user.id)
+      end
       session[:order_id] = @current_order.id
     end
     @current_order
